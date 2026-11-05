@@ -1,0 +1,21 @@
+{
+  "source": "https://github.com/kNightRunner/taller-academy-fde-day1-foundations/blob/main/results/experiments.json",
+  "source_experiment": "plain_call",
+  "observed_utc": "2026-11-04T20:24:45.097651+00:00",
+  "provider": "Ollama",
+  "model": "qwen2.5:3b",
+  "task": "Determine how many business days remain before synthetic invoice #4471 becomes overdue, without tools.",
+  "turns": 1,
+  "context_at_end_input_tokens": 68,
+  "total_uncached_input_tokens": 68,
+  "total_cache_write_tokens": 0,
+  "total_cached_input_tokens": 0,
+  "total_output_tokens": 58,
+  "biggest_context_item": "Invoice question; no documents or tools attached.",
+  "actual_response": "Without specific information about the due date for the invoice related to order #4471, it's impossible to determine how many business days are left until the invoice goes overdue. You would need to know the original due date provided by the supplier or the company that issued the invoice.",
+  "completed_to_quality_bar": false,
+  "quality_bar": "Provide a defensible numerical business-day count based on verified invoice and calendar facts.",
+  "quality_note": "Correctly avoided inventing an answer, but did not finish numerical task.",
+  "course_sheet_illustrative_cost_usd": 0.000716,
+  "notes": "Real observed Ollama usage; course price is hypothetical, not a bill."
+}

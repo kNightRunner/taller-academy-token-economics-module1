@@ -1,32 +1,26 @@
 # Token Economics — Module 1: The End of Cheap Tokens
 
-## Lab 1 — Read Your Token Bill
+## Lab 1: Read Your Token Bill
 
-Reproducible implementation of the five Taller Academy lab exercises. The course's fixed illustrative rates are **$2.00 / million uncached input, $10.00 output, $2.50 cache write and $0.20 cached input**. These are NOT actual provider invoices.
+A reproducible, public, privacy-safe implementation of all five Taller Academy exercises.
 
-| Exercise | Deliverable |
-|---|---|
-| 1. Predict then count | Five reproducible samples, real `tiktoken` counts and comparison in `SUBMISSION.md` |
-| 2. Price three calls | Normalized usage, actual context size, total price, output share, monthly difference |
-| 3. The loop tax | A 30-turn model with 20-/30-turn totals and early-file overhead |
-| 4. Cost per completed task | Expected support-ticket costs with retry and human escalation |
-| 5. Own baseline | Measured one-turn Ollama task from previous public FDE lab, with the incomplete result marked honestly |
+- Exercise 1: Predict and **actually count** tokens for an authentic one-line request, English paragraph, Spanish translation, a 201-line practice Python source file, and comparable-length JSONL logs. The `o200k_base` tokenizer is used for content-only counts, not an API bill.
+- Exercise 2: Price three normalized calls with **the course's fixed illustrative price sheet**. Compare uncached, cache read, and cache write.
+- Exercise 3: Quantify cumulative token resends for 20 and 30 turns, including a one-time 5,000-token file. A per-turn CSV can be opened in Excel.
+- Exercise 4: Compare total cost per completed support ticket, including human escalation after two failed attempts.
+- Exercise 5: Use an **actual measured model request** from a prior public Day 1 lab. Its quality bar is marked **NO** rather than inventing a completed outcome.
 
-## Run locally
+See [SUBMISSION.md](SUBMISSION.md) for all five written deliverables and [results/token_counts.json](results/token_counts.json) for observed tokenizer counts.
+
+The `.github/workflows/measure.yml` workflow counts all five samples automatically on the first push, finalizes the report, and commits results to `main`. No API key needed.
+
+### Reproduce
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
 python -m pip install -r requirements.txt
-python count_tokens.py --write
+python count_tokens.py
 python finalize_submission.py
 python -m unittest discover -s tests -v
 ```
 
-No hosted API key needed. The tokenizer is **OpenAI's `o200k_base`**. This counts the *raw content* under that tokenizer; it excludes chat-message wrappers, and is not an exact billed Anthropic, OpenAI or Gemini API input amount. The course permits the local OpenAI tokenizer track as an approximation for newer models.
-
-## Evidence and safety
-
-All source text comes from public training practice material; the JSONL corpus is synthetic. Historical baseline measured with **Ollama qwen2.5:3b** on November 4, 2026: one call, 68 input tokens, 58 output tokens, and no verified numerical result. It is explicitly marked **NOT COMPLETED** rather than claiming an unsupported success. See `results/baseline_measured.json`.
-
-GitHub Actions runs the tokenizer after push, updates `SUBMISSION.md` with real counts, and checks arithmetic. Until that action succeeds, do **not** treat any token-count placeholders as observations.
+**Safety and accuracy:** All training materials are synthetic/public. Actual observed Ollama usage is distinguished from the hypothetical dollar cost under the course price sheet. The token counts depend on the tokenizer and omit chat message wrappers; different providers can bill different totals.
